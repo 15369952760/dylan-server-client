@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dylan.eureka.serverClient.project.dao.GatewayFilterRulesMapper" >
+
+    <select id="queryList" resultType="com.dylan.eureka.serverClient.project.model.GatewayFilterRules" >
+        SELECT
+          id,
+          name,
+          value,
+          filter_id as filterId
+        FROM
+          gateway_filter_rules
+        WHERE
+          filter_id = #{filterId}
+    </select>
+
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.dylan.eureka.serverClient.project.model.GatewayFilterRules">
+        INSERT INTO
+          gateway_filter_rules (id, name, value, filter_id)
+        VALUES (#{id}, #{name}, #{value}, #{filterId})
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM gateway_filter_rules WHERE filter_id = #{filterId}
+    </delete>
+
+    <!-- 编辑 -->
+    <update id="update" parameterType="com.dylan.eureka.serverClient.project.model.GatewayFilterRules" >
+        UPDATE
+          gateway_filter_rules
+        SET
+          name = #{name},
+          value = #{value},
+          filter_id = #{filterId}
+        WHERE
+          id = #{id}
+    </update>
+
+</mapper>

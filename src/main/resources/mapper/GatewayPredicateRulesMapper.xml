@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dylan.eureka.serverClient.project.dao.GatewayPredicateRulesMapper" >
+
+    <select id="queryList" resultType="com.dylan.eureka.serverClient.project.model.GatewayPredicateRules" >
+        SELECT
+          id,
+          name,
+          value,
+          predicate_id as predicateId
+        FROM
+          gateway_predicate_rules
+        WHERE
+          predicate_id = #{predicateId}
+    </select>
+
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.dylan.eureka.serverClient.project.model.GatewayPredicateRules">
+        INSERT INTO
+          gateway_predicate_rules (id, name, value, predicate_id)
+        VALUES (#{id}, #{name}, #{value}, #{predicateId})
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM gateway_predicate_rules WHERE predicate_id = #{predicateId}
+    </delete>
+
+    <!-- 编辑 -->
+    <update id="update" parameterType="com.dylan.eureka.serverClient.project.model.GatewayPredicateRules" >
+        UPDATE
+          gateway_predicate_rules
+        SET
+          name = #{name},
+          value = #{value},
+          predicate_id = #{predicateId}
+        WHERE
+          id = #{id}
+    </update>
+
+</mapper>

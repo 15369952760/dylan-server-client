@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dylan.eureka.serverClient.project.dao.GatewayPredicateMapper" >
+
+    <select id="queryList"  resultType="com.dylan.eureka.serverClient.project.model.GatewayPredicateDefinition" >
+        SELECT
+          id,
+          name,
+          define_id as definId
+        FROM
+          gateway_predicate
+        WHERE
+          define_id = #{definId}
+    </select>
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.dylan.eureka.serverClient.project.model.GatewayPredicateDefinition">
+        INSERT INTO
+          gateway_predicate (id, name, define_id)
+        VALUES (#{id}, #{name}, #{definId})
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM gateway_predicate WHERE define_id = #{defineId}
+    </delete>
+
+    <!-- 编辑 -->
+    <update id="update" parameterType="com.dylan.eureka.serverClient.project.model.GatewayPredicateDefinition" >
+        UPDATE
+          gateway_predicate
+        SET
+          name = #{name},
+          define_id = #{definId}
+        WHERE
+          id = #{id}
+    </update>
+
+</mapper>

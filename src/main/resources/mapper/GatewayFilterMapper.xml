@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dylan.eureka.serverClient.project.dao.GatewayFilterMapper" >
+
+    <select id="queryList" resultType="com.dylan.eureka.serverClient.project.model.GatewayFilterDefinition">
+        SELECT
+          id,
+          name,
+          define_id as defineId
+        FROM
+          gateway_filter
+        WHERE
+          define_id = #{defineId}
+    </select>
+
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.dylan.eureka.serverClient.project.model.GatewayFilterDefinition">
+        INSERT INTO
+          gateway_filter (id, name, define_id)
+        VALUES (#{id}, #{name}, #{defineId})
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM gateway_filter WHERE define_id = #{defineId}
+    </delete>
+
+    <!-- 编辑 -->
+    <update id="update" parameterType="com.dylan.eureka.serverClient.project.model.GatewayFilterDefinition" >
+        UPDATE
+          gateway_filter
+        SET
+          name = #{name},
+          define_id = #{defineId}
+        WHERE
+          id = #{id}
+    </update>
+
+</mapper>
